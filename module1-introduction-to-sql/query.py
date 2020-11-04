@@ -1,4 +1,4 @@
-
+# rpg queries
 total_characters = """
 SELECT COUNT(DISTINCT character_id)
 	AS total_characters
@@ -94,3 +94,26 @@ FROM
 QUERY_LIST = [total_characters, total_mage, total_thief, total_cleric, total_fighter,
                 total_items, total_weapons, total_non_weapons, character_items, character_weapons,
                 average_items, average_weapons]
+
+
+
+# buddymove queries
+rows_count = """
+SELECT COUNT(*)
+FROM review;
+"""
+
+min_100_nature_shopping = """
+SELECT COUNT(*)
+FROM review
+WHERE Nature >= 100
+AND Shopping >= 100;
+"""
+
+average_buddy_table = """
+SELECT AVG(Sports), AVG(Religious), AVG(Nature),
+	AVG(Theatre), AVG(Shopping), AVG(Picnic)
+FROM review;
+"""
+
+BUDDY_QUERY_LIST = [rows_count, min_100_nature_shopping, average_buddy_table]
