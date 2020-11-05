@@ -63,9 +63,9 @@ LIMIT 20;
 
 # Character weapns makes same assumptions as character items
 character_weapons = """
-SELECT COUNT(item_id) AS character_weapons
+SELECT COUNT(item_ptr_id) AS character_weapons
 FROM charactercreator_character_inventory
-INNER JOIN armory_weapon
+LEFT JOIN armory_weapon
 	ON item_id = item_ptr_id
 GROUP BY character_id
 LIMIT 20;
@@ -84,9 +84,9 @@ average_weapons = """
 SELECT AVG(weapon_count.char_weapons)
 	AS average_weapons
 FROM
-	(select count(*) as char_weapons
+	(select count(item_ptr_id) as char_weapons
 	FROM charactercreator_character_inventory inv
-	INNER JOIN armory_weapon
+	LEFT JOIN armory_weapon
 		ON inv.item_id = armory_weapon.item_ptr_id
 	GROUP BY inv.character_id) weapon_count
 """
